@@ -21,7 +21,7 @@ export default function Login() {
 
             <div>
               <label className="mb-2 block text-sm font-medium text-slate-300">
-                Password
+                Enter Password
               </label>
               <input 
                 type="password" 
@@ -31,7 +31,7 @@ export default function Login() {
             <button 
               type="submit" 
               className="mt-2 w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-800">
-              Sign in
+              Login
             </button>
             
           </div>
