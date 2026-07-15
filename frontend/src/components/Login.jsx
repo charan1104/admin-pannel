@@ -12,7 +12,7 @@ export default function Login() {
           <div className="space-y-5">
             <div>
               <label className="mb-2 block text-sm font-medium text-slate-300">
-                Email Address
+                Email
               </label>
               <input 
                 type="email" 
