@@ -21,7 +21,7 @@ export default function Login() {
 
             <div>
               <label className="mb-2 block text-sm font-medium text-slate-300">
-                Enter Password
+               Password
               </label>
               <input 
                 type="password" 

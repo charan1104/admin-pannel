@@ -105,10 +105,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Dummy visual space placeholder for future graphs/data */}
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 min-h-[300px] flex items-center justify-center text-slate-400">
-            Analytics visualization charts will sit here.
-          </div>
+         
         </main>
       </div>
     </div>
