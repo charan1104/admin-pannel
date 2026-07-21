@@ -1,13 +1,68 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
+import React, { Suspense, useEffect } from 'react'
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
-export default function App() {
+import { CSpinner } from '@coreui/react'
+
+import { ToastContainer } from 'react-toastify'
+import { isUserLoggedIn } from './redux/actions/auth.actions'
+
+// Containers
+const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
+const DefaultFrontLayout = React.lazy(() => import('./layout/DefaultFrontLayout'))
+
+// Pages
+const Login = React.lazy(() => import('./views/Login'))
+
+const App = () => {
+
+  const pathname = window.location.pathname;
+  const uri = pathname.split('/')[1]; // Index 1 is the first segment
+
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth)
+
+  /* useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserLoggedIn());
+    }
+    if(auth.authenticate){
+      // dispatch(get_departments());
+      // dispatch(get_brands());
+      // dispatch(get_hsncodes());
+      // dispatch(get_cities());
+      // dispatch(get_products());
+      // dispatch(get_categories())
+    }
+  },[auth.authenticate]); */
+
+  // front end login check
+  useEffect(() => {
+    if(!localStorage.getItem('user_id')){
+      if(!localStorage.getItem('guest_user_id')){
+        localStorage.setItem('guest_user_id', "GUEST_"+ Math.floor(Math.random() * 10000));
+      }
+    }
+  },[])
+  
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
-  );
+   <>
+      <Suspense
+        fallback={
+          <div className="pt-3 text-center">
+            <CSpinner color="primary" variant="grow" />
+          </div>
+        }
+      >
+        <Routes>
+        <Route path="/" exact index name="Home" element={<DefaultFrontLayout />} />
+        <Route exact path="/admin/login" name="Login Page" element={<Login />} />
+        <Route path="*" name="Admin" element={uri == 'admin' ? <DefaultLayout /> : <DefaultFrontLayout />} />
+        </Routes>
+      </Suspense>
+      <ToastContainer />
+   </>
+  )
 }
+
+export default App
