@@ -12,8 +12,7 @@ export default function Login() {
         <input 
           type="email" 
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
-          placeholder="your@email.com"
-        />
+          placeholder="your@email.com"/>
       </div>
 
       <div>
